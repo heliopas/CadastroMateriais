@@ -9,7 +9,7 @@ Tabela de conteúdos
    * [Sobre](#Sobre)
    * [Tabela de Conteudo](#tabela-de-conteudo)
    * [Instalação](#instalacao)
-   * [Como usar](#Como usar)
+   * [Como usar](#Como-usar)
       * [Pre Requisitos](#pre-requisitos)
       * [Local files](#local-files)
       * [Remote files](#remote-files)
