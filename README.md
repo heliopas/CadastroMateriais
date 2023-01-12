@@ -1,14 +1,11 @@
 # Warehouse APP
 
-## Decrição do projeto
-Programa para controle de estoque do setor de teste em python usando BD Mysql
-
 Tabela de conteúdos
 =================
 <!--ts-->
    * [Sobre](#Sobre)
-   * [Tabela de Conteudo](#tabela-de-conteudo)
-   * [Instalação](#instalacao)
+   * [Tabela de Conteudo](#Features)
+   * [Instalação](#Instalação)
    * [Como usar](#Como-usar)
       * [Pre Requisitos](#pre-requisitos)
       * [Local files](#local-files)
@@ -18,6 +15,9 @@ Tabela de conteúdos
    * [Tests](#testes)
    * [Tecnologias](#tecnologias)
 <!--te-->
+
+## Sobre
+Programa para controle de estoque do setor de teste em python usando BD Mysql
 
 ### Features
 
