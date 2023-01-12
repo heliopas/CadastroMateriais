@@ -1,4 +1,3 @@
 # created by virtualenv automatically
 /files/logo/*
-/globalVar.py
-globalVar.py
+/files/*

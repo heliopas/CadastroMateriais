@@ -1,8 +1,5 @@
 import tkinter as tk
-import threading
-import globalVar
 import cadastroSkinApp
-from tkinter import ttk
 
 from PIL import Image, ImageTk
 

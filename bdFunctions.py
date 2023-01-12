@@ -1,6 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
-import globalVar
+from files import globalVar
 
 global cursor, dbconn
 

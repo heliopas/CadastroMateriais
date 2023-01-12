@@ -1,10 +1,7 @@
 import tkinter as tk
-import threading
-import tkinter.messagebox
 from tkinter import ttk
-from tkinter.messagebox import showerror, showwarning, showinfo
 
-import globalVar
+from files import globalVar
 import bdFunctions
 import messagePipe
 
