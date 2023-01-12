@@ -1,11 +1,22 @@
 import tkinter as tk
 import threading
-import globalVar
+import tkinter.messagebox
 from tkinter import ttk
+from tkinter.messagebox import showerror, showwarning, showinfo
 
-def inserirBD(desc, ns, qtda, price, date, prodType):
-    def __init__(desc: Misc | None = ..., value: str | None = ..., name: str | None = ...) -> None: ...
+import globalVar
+import bdFunctions
+import messagePipe
 
+
+def inserirBD(desc, ns, qtda, price, prodType):
+    def __init__(desc: str | None = ...,  ns: str = ..., qtda: str | None = ..., price: str | None = ...,
+                 prodType: str | None = ...) -> None: ...
+
+    if (desc or ns) == None:
+        bdFunctions.dbConnect()
+    else:
+        messagePipe.messageError('Falta parametros -> Descrição ou NS!!!')
 
 def ConsultarBD(aux):
     return 0
@@ -71,7 +82,7 @@ def cadastro():
 
     # Inserir material
     inserirbtnTXT = tk.StringVar()
-    inserirbtn = tk.Button(midFrame, textvariable=inserirbtnTXT, command=lambda:inserirBD(produto),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Inserir')
+    inserirbtn = tk.Button(midFrame, textvariable=inserirbtnTXT, command=lambda:inserirBD(produto.get(), ns.get(), qtda.get(), valor.get(),tipoProduto.get()),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Inserir')
     inserirbtn.grid(column=0, row=7, sticky='new')
 
     # Consultar
