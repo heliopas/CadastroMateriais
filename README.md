@@ -27,14 +27,14 @@ Tabela de conteúdos
 - [ ] Alterar material 
 - [ ] Menu de Help 
 
-###Instalação
+### Instalação
 ```bash
 pip install Pillow
 pip install tk
 pip install mysql-connector-python
 ```
 
-###Como usar
+### Como usar
 
 ### 🛠 Tecnologias
 
