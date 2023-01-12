@@ -4,15 +4,14 @@ Tabela de conteúdos
 =================
 <!--ts-->
    * [Sobre](#Sobre)
-   * [Tabela de Conteudo](#Features)
-   * [Instalação](#Instalação)
+   * [Funções disponíveis](#Features)
+   * [Dependências necessárias](#Instalação)
    * [Como usar](#Como-usar)
       * [Pre Requisitos](#pre-requisitos)
       * [Local files](#local-files)
       * [Remote files](#remote-files)
       * [Multiple files](#multiple-files)
       * [Combo](#combo)
-   * [Tests](#testes)
    * [Tecnologias](#tecnologias)
 <!--te-->
 
@@ -22,7 +21,9 @@ Programa para controle de estoque do setor de teste em python usando BD Mysql
 ### Features
 
 - [x] Cadastro de Material 
-- [ ] Buscar material 
+- - [ ] Verificar se material existe antes de cadastrar
+- [x] Buscar material 
+- - [ ] Exibir Material após busca
 - [ ] Deletar material 
 - [ ] Alterar material 
 - [ ] Menu de Help 

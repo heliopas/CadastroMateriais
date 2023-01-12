@@ -1,10 +1,8 @@
 import tkinter as tk
 import cadastroSkinApp
+import datetime
 
 from PIL import Image, ImageTk
-
-def buscar():
-    return 1
 
 def deletar():
     return 1
@@ -20,7 +18,6 @@ def emprestimo():
 
 def exitsw(root):
     root.destroy()
-
 
 
 def drawApp():
@@ -66,7 +63,7 @@ def drawApp():
 
     # Button buscar material
     buscarbtnTXT = tk.StringVar()
-    buscarbtn = tk.Button(draWindow, textvariable=buscarbtnTXT, command=lambda: buscar(), font="Raleway",
+    buscarbtn = tk.Button(draWindow, textvariable=buscarbtnTXT, command=lambda: cadastroSkinApp.buscar(), font="Raleway",
                         background="#8b9484", foreground="White", height=1, width=20)
     buscarbtnTXT.set("Buscar material")
     buscarbtn.grid(column=0, row=1)
