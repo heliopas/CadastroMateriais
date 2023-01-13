@@ -12,7 +12,7 @@ global cursor, dbconn
 #       valor float,
 #       data_hora varchar(255),
 #       tipo_produto varchar(255) not null,
-#       Col_ext_1 varchar(255),
+#       Col_ext_1 varchar(255),           // Tabela para registro de emprestimo
 #       Col_ext_2 varchar(255),
 # 	    Col_ext_3 int,
 #     Col_ext_4 int,
@@ -28,6 +28,11 @@ dbStringInsert = 'INSERT INTO cadastroMaterial(desc_produto, ns_produto, qtda, v
 
 dbGetTableDataOR = 'SELECT * FROM cadastroMaterial where ns_produto = (%s) or tipo_produto = %s;'
 dbGetTableDataAND = 'SELECT * FROM cadastroMaterial where ns_produto = (%s) and tipo_produto = %s;'
+
+dbDeleteData = 'DELETE FROM cadastroMaterial where ns_produto = (%s) or ID_produto = (%s);'
+
+dbUpdateName = 'UPDATE cadastroMaterial set Col_ext_1 = (%s) where ID_produto = (%s);'
+
 
 #val = [('Medidor E223', '4N234514', '5', '17.895', '27/12/2025 - 12:45 AM', 'Cabo', '3', '2', '1', '3', '2', '1', '2231422')]
 
@@ -86,11 +91,29 @@ def dbGetData(ns, prodType):
 
     return receivedData
 
-def dbDelete():
+def dbDelete(ns, ID_produto):
     dbConnect()
-
+    if dbconn.is_connected():
+        if (ns and ID_produto) != '':
+            try:
+                cursor.execute(dbDeleteData, (ns, ID_produto))
+                dbconn.commit()
+                messagePipe.messageInfo('Apagado com sucesso!!!')
+            except Error as e:
+                messagePipe.messageError('BD error: ' + str(e))
     dbClose()
 
+def dbUpdateData(name, ID_produto):
+    dbConnect()
+    if dbconn.is_connected():
+        if (name and ID_produto) != '':
+            try:
+                cursor.execute(dbUpdateName, (name, ID_produto))
+                dbconn.commit()
+                messagePipe.messageInfo('Emprestimo registrado!!!')
+            except Error as e:
+                messagePipe.messageError('BD error: ' + str(e))
+    dbClose()
 
 
 

@@ -4,22 +4,6 @@ import datetime
 
 from PIL import Image, ImageTk
 
-def deletar():
-    return 1
-
-def alterar():
-    return 1
-
-def helpmenu():
-    return 1
-
-def emprestimo():
-    return 1
-
-def exitsw(root):
-    root.destroy()
-
-
 def drawApp():
     root = tk.Tk()
     root.wm_attributes("-topmost", True)
@@ -70,7 +54,7 @@ def drawApp():
 
     # Button deletar material
     deletarbtnTXT = tk.StringVar()
-    deletarbtn = tk.Button(draWindow, textvariable=deletarbtnTXT, command=lambda: deletar(), font="Raleway",
+    deletarbtn = tk.Button(draWindow, textvariable=deletarbtnTXT, command=lambda: cadastroSkinApp.deletar(), font="Raleway",
                            background="#8b9484", foreground="White", height=1, width=20)
     deletarbtnTXT.set("Deletar material")
     deletarbtn.grid(column=0, row=2)
@@ -91,7 +75,7 @@ def drawApp():
 
     # Button Emprestimos
     emprestimobtnTXT = tk.StringVar()
-    emprestimobtn = tk.Button(draWindow, textvariable=emprestimobtnTXT, command=lambda: emprestimo(), font="Raleway",
+    emprestimobtn = tk.Button(draWindow, textvariable=emprestimobtnTXT, command=lambda: cadastroSkinApp.emprestar(), font="Raleway",
                          background="#8b9484", foreground="White", height=1, width=20)
     emprestimobtnTXT.set("Emprestimos")
     emprestimobtn.grid(column=0, row=6)
@@ -104,3 +88,6 @@ def drawApp():
     closebtn.grid(column=0, row=7)
 
     root.mainloop()
+
+def exitsw(root):
+    root.destroy()

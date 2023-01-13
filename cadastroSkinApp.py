@@ -47,6 +47,30 @@ def ConsultarBD(ns, prodType, dispMessage):
                 messagePipe.messageInfo('Sem informações cadastrada no banco!')
             return False
 
+def deletarBD(ns, ID_produto):
+    def __init__(ns: str | None = ...,  ID_produto: str | None = ...) -> None: ...
+
+    if len(ns) == 0 or len(ID_produto) == 0:
+        messagePipe.messageError('Insira o numero de série e ID!')
+    else:
+        data = bdFunctions.dbDelete(str(ns), str(ID_produto))
+        if data:
+            return True
+        else:
+            return False
+
+def updateBD(name, ID_produto):
+    def __init__(name: str | None = ...,  ID_produto: str | None = ...) -> None: ...
+
+    if len(name) == 0 or len(ID_produto) == 0:
+        messagePipe.messageError('Insira o nome e o ID do produto!')
+    else:
+        data = bdFunctions.dbUpdateData(str(name), str(ID_produto))
+        if data:
+            return True
+        else:
+            return False
+
 def sair(root):
     root.destroy()
 
@@ -68,6 +92,65 @@ def printTable(dataBD):
             table.insert(len(dataBD[0]), dataBD[i][j])
     root.mainloop()
 
+def emprestar():
+    root = tk.Tk()
+    root.wm_attributes("-topmost", True)
+    root.title('Emprestimo de material')
+
+    # get the screen dimension
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    window_width = screen_width - 750
+    window_height = screen_height - 720
+
+    # find the center point
+    center_x = int(screen_width / 2 - window_width / 2)
+    center_y = int(screen_height / 2 - window_height / 2)
+
+    root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
+
+    midFrame = tk.Frame(root)
+    midFrame.grid(column=1, row=3, sticky='new')
+    midFrame.grid_columnconfigure(0, weight=3, uniform='middle')
+
+    # Nome da pessoa
+    nsLbl = tk.Label(root, text="Nome:", font="Raleway 12", anchor='w')
+    nsLbl.grid(column=0, row=0)
+    ns = tk.Entry(root, font='Raleway', width=25)
+    ns.grid(column=1, row=0)
+
+    # numero do ID_produto
+    ID_produtoLbl = tk.Label(root, text="ID do produto:", font="Raleway 12", anchor='w')
+    ID_produtoLbl.grid(column=0, row=1)
+    ID_produto = tk.Entry(root, font='Raleway', width=25)
+    ID_produto.grid(column=1, row=1)
+
+    # comboBox seleção de tipo de material
+    tipoProdutoLbl = tk.Label(root, text="Tipo produto:", font="Raleway 12")
+    tipoProdutoLbl.grid(column=0, row=2)
+    tipoProduto = ttk.Combobox(root, font='Raleway 12', width=29)
+    tipoProduto['values'] = globalVar.tipoProduto
+    tipoProduto['state'] = 'readonly'
+    tipoProduto.grid(column=1, row=2, sticky='s')
+
+
+    # Alterar
+    altbtnTXT = tk.StringVar()
+    altbtn = tk.Button(midFrame, textvariable=altbtnTXT, command=lambda:updateBD(ns.get(), ID_produto.get()),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Emprestar')
+    altbtn.grid(column=0, row=3, sticky='new')
+
+    # Consultar
+    ConsultarbtnTXT = tk.StringVar()
+    Consultarbtn = tk.Button(midFrame, textvariable=ConsultarbtnTXT, command=lambda:ConsultarBD(ns.get(), tipoProduto.get(), dispMessage=True),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Consultar')
+    Consultarbtn.grid(column=1, row=3, sticky='new')
+
+    # Sair
+    sairbtnTXT = tk.StringVar()
+    sairbtn = tk.Button(midFrame, textvariable=sairbtnTXT, command=lambda:sair(root),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Sair')
+    sairbtn.grid(column=2, row=3, sticky='new')
+
+    root.mainloop
 
 def buscar():
     root = tk.Tk()
@@ -100,10 +183,10 @@ def buscar():
     # comboBox seleção de tipo de material
     tipoProdutoLbl = tk.Label(root, text="Tipo produto:", font="Raleway 12")
     tipoProdutoLbl.grid(column=0, row=2)
-    tipoProduto = ttk.Combobox(root, font='Raleway 12', width=27)
+    tipoProduto = ttk.Combobox(root, font='Raleway 12', width=28)
     tipoProduto['values'] = globalVar.tipoProduto
     tipoProduto['state'] = 'readonly'
-    tipoProduto.grid(column=1, row=2, sticky='w')
+    tipoProduto.grid(column=1, row=2, sticky='s')
 
     # Consultar
     ConsultarbtnTXT = tk.StringVar()
@@ -114,6 +197,66 @@ def buscar():
     sairbtnTXT = tk.StringVar()
     sairbtn = tk.Button(midFrame, textvariable=sairbtnTXT, command=lambda:sair(root),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Sair')
     sairbtn.grid(column=1, row=3, sticky='new')
+
+    root.mainloop
+
+def deletar():
+    root = tk.Tk()
+    root.wm_attributes("-topmost", True)
+    root.title('Deletar material')
+
+    # get the screen dimension
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    window_width = screen_width - 750
+    window_height = screen_height - 720
+
+    # find the center point
+    center_x = int(screen_width / 2 - window_width / 2)
+    center_y = int(screen_height / 2 - window_height / 2)
+
+    root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
+
+    midFrame = tk.Frame(root)
+    midFrame.grid(column=1, row=3, sticky='new')
+    midFrame.grid_columnconfigure(0, weight=3, uniform='middle')
+
+    # numero de série
+    nsLbl = tk.Label(root, text="Numero de série:", font="Raleway 12", anchor='w')
+    nsLbl.grid(column=0, row=0)
+    ns = tk.Entry(root, font='Raleway', width=25)
+    ns.grid(column=1, row=0)
+
+    # numero do ID_produto
+    ID_produtoLbl = tk.Label(root, text="ID do produto:", font="Raleway 12", anchor='w')
+    ID_produtoLbl.grid(column=0, row=1)
+    ID_produto = tk.Entry(root, font='Raleway', width=25)
+    ID_produto.grid(column=1, row=1)
+
+    # comboBox seleção de tipo de material
+    tipoProdutoLbl = tk.Label(root, text="Tipo produto:", font="Raleway 12")
+    tipoProdutoLbl.grid(column=0, row=2)
+    tipoProduto = ttk.Combobox(root, font='Raleway 12', width=29)
+    tipoProduto['values'] = globalVar.tipoProduto
+    tipoProduto['state'] = 'readonly'
+    tipoProduto.grid(column=1, row=2, sticky='s')
+
+
+    # Deletar
+    delbtnTXT = tk.StringVar()
+    delbtn = tk.Button(midFrame, textvariable=delbtnTXT, command=lambda:deletarBD(ns.get(), ID_produto.get()),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Deletar')
+    delbtn.grid(column=0, row=3, sticky='new')
+
+    # Consultar
+    ConsultarbtnTXT = tk.StringVar()
+    Consultarbtn = tk.Button(midFrame, textvariable=ConsultarbtnTXT, command=lambda:ConsultarBD(ns.get(), tipoProduto.get(), dispMessage=True),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Consultar')
+    Consultarbtn.grid(column=1, row=3, sticky='new')
+
+    # Sair
+    sairbtnTXT = tk.StringVar()
+    sairbtn = tk.Button(midFrame, textvariable=sairbtnTXT, command=lambda:sair(root),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Sair')
+    sairbtn.grid(column=2, row=3, sticky='new')
 
     root.mainloop
 
