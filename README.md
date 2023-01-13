@@ -21,12 +21,13 @@ Programa para controle de estoque do setor de teste em python usando BD Mysql
 ### Features
 
 - [x] Cadastro de Material 
-- - [ ] Verificar se material existe antes de cadastrar
+- - [x] Verificar se material existe antes de cadastrar
 - [x] Buscar material 
-- - [ ] Exibir Material após busca
+- - [x] Exibir Material após busca
 - [ ] Deletar material 
 - [ ] Alterar material 
 - [ ] Menu de Help 
+- [ ] Emprestimos
 
 ### Instalação
 ```bash

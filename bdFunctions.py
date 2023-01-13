@@ -26,7 +26,8 @@ dbStringInsert = 'INSERT INTO cadastroMaterial(desc_produto, ns_produto, qtda, v
                  'tipo_produto, Col_ext_1, Col_ext_2, Col_ext_3, Col_ext_4, Col_ext_5, ' \
                  'Col_ext_6, ID_produto) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);'
 
-dbGetTableData = 'SELECT * FROM cadastroMaterial where ns_produto = (%s) or tipo_produto = %s;'
+dbGetTableDataOR = 'SELECT * FROM cadastroMaterial where ns_produto = (%s) or tipo_produto = %s;'
+dbGetTableDataAND = 'SELECT * FROM cadastroMaterial where ns_produto = (%s) and tipo_produto = %s;'
 
 #val = [('Medidor E223', '4N234514', '5', '17.895', '27/12/2025 - 12:45 AM', 'Cabo', '3', '2', '1', '3', '2', '1', '2231422')]
 
@@ -54,7 +55,7 @@ def dbClose():
         try:
             cursor.close()
             dbconn.close()
-            messagePipe.messageInfo('Conexão BD fechada!')
+            #messagePipe.messageInfo('Conexão BD fechada!')
         except Error as e:
             messagePipe.messageError('BD error: '+ str(e))
 
@@ -73,12 +74,17 @@ def dbGetData(ns, prodType):
     dbConnect()
     if dbconn.is_connected():
         try:
-            cursor.execute(dbGetTableData, (ns, prodType))
+            if (ns and prodType) != '':
+                cursor.execute(dbGetTableDataAND, (ns, prodType))
+            else:
+                cursor.execute(dbGetTableDataOR, (ns, prodType))
             receivedData = cursor.fetchall()
             print(receivedData)
         except Error as e:
             messagePipe.messageError('BD error: ' + str(e))
     dbClose()
+
+    return receivedData
 
 def dbDelete():
     dbConnect()

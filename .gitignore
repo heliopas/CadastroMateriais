@@ -1,3 +1,4 @@
 # created by virtualenv automatically
 /files/logo/*
 /files/*
+/__pycache__/*

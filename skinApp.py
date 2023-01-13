@@ -101,6 +101,6 @@ def drawApp():
     closebtn = tk.Button(draWindow, textvariable=closebtnTXT, command=lambda: exitsw(root), font="Raleway",
                          background="#8b9484", foreground="White", height=1, width=20)
     closebtnTXT.set("Close App")
-    closebtn.grid(column=0, row=6)
+    closebtn.grid(column=0, row=7)
 
     root.mainloop()

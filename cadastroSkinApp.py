@@ -15,28 +15,59 @@ def inserirBD(desc, ns, qtda, price, prodType):
     val = [('Medidor E223', '4N234514', '5', '17.895', '27/12/2025 - 12:45 AM', 'Cabo', '3', '2', '1', '3', '2', '1',
             '2231422')]
 
-    data = datetime.datetime.utcnow().strftime('%c')
-    ID = datetime.datetime.utcnow().strftime('%Y') + datetime.datetime.utcnow().strftime('%d') + str(random.randint(1, 1000))
+    #fazer consulta no banco antes de inserir se False não tem informação no Banco
+    if ConsultarBD(ns, prodType, dispMessage=False) is False:
+        data = datetime.datetime.utcnow().strftime('%c')
+        ID = datetime.datetime.utcnow().strftime('%Y') + datetime.datetime.utcnow().strftime('%d') + str(random.randint(1, 1000))
 
-    dataVector = [( str(desc), str(ns), str(qtda), str(price), str(data), str(prodType), str('-'), str('-'),
-                    str('0'), str('0'), str('0'), str('0') , str(ID))]
+        dataVector = [( str(desc), str(ns), str(qtda), str(price), str(data), str(prodType), str('-'), str('-'),
+                        str('0'), str('0'), str('0'), str('0') , str(ID))]
 
-    if (desc or ns) != '':
-        bdFunctions.dbInsert(dataVector)
+        if (desc or ns) != '':
+            bdFunctions.dbInsert(dataVector)
+        else:
+            messagePipe.messageError('Falta parametros -> Descrição ou NS!!!')
     else:
-        messagePipe.messageError('Falta parametros -> Descrição ou NS!!!')
+        messagePipe.messageInfo('Produto já cadastrado no BD!!')
 
-def ConsultarBD(ns, prodType):
-    def __init__(ns: str | None = ...,  prodType: str | None = ...) -> None: ...
+def ConsultarBD(ns, prodType, dispMessage):
+    def __init__(ns: str | None = ...,  prodType: str | None = ..., dispMessage : bool | None = ...) -> None: ...
 
     if (ns or prodType) == '':
         # montar função para trazer todos os dados cadastrados
         messagePipe.messageError('Insira um valor!')
     else:
-        bdFunctions.dbGetData(str(ns), str(prodType))
+        data = bdFunctions.dbGetData(str(ns), str(prodType))
+        if len(data) != 0:
+            if dispMessage is True:
+                printTable(data)
+            return data
+        else:
+            if dispMessage is True:
+                messagePipe.messageInfo('Sem informações cadastrada no banco!')
+            return False
 
 def sair(root):
     root.destroy()
+
+def printTable(dataBD):
+    rows = len(dataBD)
+    columns = len(dataBD[0])
+
+    root = tk.Tk()
+    root.wm_attributes("-topmost", True)
+    root.title('Materiais cadastrados')
+
+    # code for creating table
+    for i in range(rows):
+        for j in range(columns):
+            table = tk.Entry(root, width=13, fg='blue',
+                           font=('Arial', 10, 'bold'))
+
+            table.grid(row=i, column=j)
+            table.insert(len(dataBD[0]), dataBD[i][j])
+    root.mainloop()
+
 
 def buscar():
     root = tk.Tk()
@@ -76,7 +107,7 @@ def buscar():
 
     # Consultar
     ConsultarbtnTXT = tk.StringVar()
-    Consultarbtn = tk.Button(midFrame, textvariable=ConsultarbtnTXT, command=lambda:ConsultarBD(ns.get(), tipoProduto.get()),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Consultar')
+    Consultarbtn = tk.Button(midFrame, textvariable=ConsultarbtnTXT, command=lambda:ConsultarBD(ns.get(), tipoProduto.get(), dispMessage=True),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Consultar')
     Consultarbtn.grid(column=0, row=3, sticky='new')
 
     # Sair
@@ -150,7 +181,7 @@ def cadastro():
 
     # Consultar
     ConsultarbtnTXT = tk.StringVar()
-    Consultarbtn = tk.Button(midFrame, textvariable=ConsultarbtnTXT, command=lambda:ConsultarBD(),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Consultar')
+    Consultarbtn = tk.Button(midFrame, textvariable=ConsultarbtnTXT, command=lambda:ConsultarBD(ns.get(), tipoProduto.get(), dispMessage=True),font="Raleway 14", background="#8b9484", foreground="White", height=1, width=15, text='Consultar')
     Consultarbtn.grid(column=1, row=7, sticky='new')
 
     # Sair
