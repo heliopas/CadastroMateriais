@@ -1,6 +1,6 @@
 import tkinter as tk
 import cadastroSkinApp
-import datetime
+import datetime, help
 
 from PIL import Image, ImageTk
 
@@ -68,7 +68,7 @@ def drawApp():
 
     # Button help
     helpbtnTXT = tk.StringVar()
-    helpbtn = tk.Button(draWindow, textvariable=helpbtnTXT, command=lambda: helpmenu(), font="Raleway",
+    helpbtn = tk.Button(draWindow, textvariable=helpbtnTXT, command=lambda: help.drawHelp(), font="Raleway",
                          background="#8b9484", foreground="White", height=1, width=20)
     helpbtnTXT.set("Help")
     helpbtn.grid(column=0, row=4)

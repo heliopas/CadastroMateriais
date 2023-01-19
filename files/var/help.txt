@@ -1,0 +1,60 @@
+Funções:
+
+- [1]Cadastro de Material
+- [2]Buscar material
+- [3]Deletar material
+- [4]Alterar material
+- [5]Menu de Help
+- [6]Emprestimos
+
+Uso:
+- [1]
+Descrição produto: - Inserir breve descrição do material
+Numero de série: - Inserir numero de série do materia (pode ser vazio)
+Quantidade: - Quantidade de itens a serem cadastrados
+Valor: - Preço do item (usar o '.' para separar as casas decimais)
+Data / Hora: - Preenchido automaticamente pelo sistema
+Tipo produto: - Classificação dos produtos por tipo, pode ser adiconado mais categorias no arquivo 'config.txt'
+
+[Inserir] - Insere no banco o item
+    Retornos
+    ->Item ja cadastrado, baseado na numero de série (se item cadastrado nulo ira acusar item ja cadastrado)
+    ->Item inserido com sucesso
+[Consultar] - Busca informações do banco baseado na 'numero de série' e 'tipo produto'
+    Retornos
+    -> Sem itens cadastrados no banco
+    -> Retorna os itens em forma de planilha
+
+- [2]
+**Função de busca de materia (traz o material baseado na 'numero de série' ou 'Tipo produto')
+Numero de série: - Inserir numero de série do materia (pode ser vazio)
+Tipo produto: - Classificação dos produtos por tipo, pode ser adiconado mais categorias no arquivo 'config.txt'
+
+[Consultar] - Busca informações do banco baseado na 'numero de série' e 'tipo produto'
+    Retornos
+    -> Sem itens cadastrados no banco
+    -> Retorna os itens em forma de planilha
+
+- [3]
+**Função para deletar o material
+'Inserir numero de série e ou tipo de produto para buscar o item, se o item estiver no banco vai ser retornado
+na ultima coluna o ID do material'
+
+Inserir o ID do produto para deletar o material.
+
+- [4]
+**Função em desenvolvimento**
+
+- [5]
+**Imprime menu de help do aplicativo
+
+- [6]
+**Registra o emprestimo de material para uma pessoa ou departamento. A mesma função faz a devolução, basta apagar o
+campo.
+
+'Buscar o ID do produto baseado no campo tipo do produto ou ir até o menu de Busca de material'
+'Inserir o ID do material e adicionar o noma da pessoa que o material será emprestado'
+
+[Emprestar] - Registra o nome da pessoa ao item que foi emprestado
+
+

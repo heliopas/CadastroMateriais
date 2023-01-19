@@ -19,21 +19,23 @@ Tabela de conteúdos
 Programa para controle de estoque do setor de teste em python usando BD Mysql
 
 ### Features
-
+- [] Tela login
 - [x] Cadastro de Material 
 - - [x] Verificar se material existe antes de cadastrar
 - [x] Buscar material 
 - - [x] Exibir Material após busca
 - [X] Deletar material 
 - [ ] Alterar material 
-- [ ] Menu de Help 
+- [X] Menu de Help 
 - [X] Emprestimos
+- [X] Carregar parametros de arquivo de configuração
 
 ### Instalação
 ```bash
 pip install Pillow
 pip install tk
 pip install mysql-connector-python
+pip.exe install tkhtmlview
 ```
 
 ### Como usar

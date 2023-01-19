@@ -1,4 +1,4 @@
 # created by virtualenv automatically
 /files/logo/*
-/files/*
 /__pycache__/*
+/files/var/globalVar.py

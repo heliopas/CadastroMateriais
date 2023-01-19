@@ -3,10 +3,9 @@ import datetime
 from tkinter import ttk
 import random
 
-from files import globalVar
+from files.var import globalVar
 import bdFunctions
 import messagePipe
-
 
 def inserirBD(desc, ns, qtda, price, prodType):
     def __init__(desc: str | None = ...,  ns: str = ..., qtda: str | None = ..., price: str | None = ...,

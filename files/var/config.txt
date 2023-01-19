@@ -1,0 +1,1 @@
+tipoProduto=[Medidor,cabo,Gabinete,Fonte,Diversos,Ferramentas,Parafuso,Monitor,JIG,RDM,Computador]

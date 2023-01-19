@@ -1,7 +1,7 @@
 import mysql.connector
 import messagePipe
 from mysql.connector import Error
-from files import globalVar
+from files.var import globalVar
 
 global cursor, dbconn
 
@@ -52,7 +52,7 @@ def dbConnect():
             cursor = dbconn.cursor()
             return 0
     except Error as e:
-        print('Erro durante conecção:' + e)
+        print('Erro durante conecção:' + str(e))
         return 1
 
 def dbClose():
